@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Set; 
 import java.util.HashSet;
 import java.util.List;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -53,4 +55,36 @@ public class AdjacencyColorGraph<Vertex, Edge> extends AdjacencyGraph<Vertex, Ed
 	public Boolean hasColor(Vertex v) {
 		return vertexToColor.containsKey(v);
 	}
+	
+	
+	// split("\\R")
+	
+	
+	public Boolean checkLegalty(String reader) {
+		
+		Map<String, Set<Integer>> playerToColors = new HashMap<String, Set<Integer>>();
+		
+		for (String line : reader.split(System.lineSeparator())) {
+			String[] split = line.split(" : ");
+			String match = split[0];
+			int color = Integer.parseInt(split[1]);
+			for (String team : match.split(" vs ")) {
+				for (String player : team.split(" ")) {
+					Set colors = playerToColors.get(player);
+					if (colors == null) {
+						colors = new HashSet<Integer>();
+					}
+					if (colors.contains(color)) {
+						return false;
+					}
+					else {
+						colors.add(player);
+					}
+				}
+			}
+		}
+		
+		return true;
+	}
+
 }

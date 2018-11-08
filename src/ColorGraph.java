@@ -5,5 +5,7 @@ public interface ColorGraph<Vertex, Edge> extends Graph<Vertex, Edge>{
 	
 	// returns the color of a given vertex 
 	public int getColor(Vertex v); 
+	
+	public Boolean checkLegalty(String reader);
 
 }

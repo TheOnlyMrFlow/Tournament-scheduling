@@ -49,11 +49,16 @@ public class MatchesScheduler{
 		ColorGraph<String, Integer> scheduler;
 		try {
 			scheduler = readMatches(new FileInputStream(new File(args[0])));
-			int nbrColors = scheduler.colorVertices(); 
+			int nbrColors = scheduler.colorVertices();
+			String checker = "";
 			for(String match : scheduler.getVertices()){ 
-				System.out.println(match + " : "+ scheduler.getColor(match)); 
+				System.out.println(match + " : "+ scheduler.getColor(match));
+				checker += match + " : " + scheduler.getColor(match) + System.lineSeparator();
 			} 
 			System.out.println(nbrColors + " colors were used in total");
+			
+			System.out.println( scheduler.checkLegalty(checker) ? "Solution is legal" : "Solution is not legal");
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
