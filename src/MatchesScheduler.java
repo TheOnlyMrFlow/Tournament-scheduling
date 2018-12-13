@@ -48,7 +48,7 @@ public class MatchesScheduler{
 	public static void main(String[] args){
 		ColorGraph<String, Integer> scheduler;
 		try {
-			scheduler = readMatches(new FileInputStream(new File(args[0])));
+			scheduler = readMatches(new FileInputStream(new File(args.length > 0 ? args[0] : "./Data/data.txt")));
 			int nbrColors = scheduler.colorVertices();
 			String checker = "";
 			for(String match : scheduler.getVertices()){ 
